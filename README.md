@@ -1,4 +1,5 @@
 Projede, kullanıcı kaydı, girişi, gönderi oluşturma, güncelleme, silme gibi temel CRUD (Create, Read, Update, Delete) işlemleri yapılabiliyor. Ayrıca, JWT token kullanılarak basit bir kimlik doğrulama sistemi uygulanmış durumda.
+
 Bu Node.js Rest API projesi aşağıdaki öğelerden oluşuyor:
 
 index.js:
@@ -31,8 +32,3 @@ routes/auth.js ve routes/post.js:
 
 '/auth' ve '/post' rotaları için ilgili işlevlerin bulunduğu kontrolcüleri içeriyor.
 Ayrıca yetkilendirme gerektiren bazı işlemler için 'auth' middleware'ini çağırıyor.
-
-
-
-
-
