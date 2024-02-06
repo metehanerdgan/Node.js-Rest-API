@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// Kullanıcı şemasını tanımlar
 const AuthSchema = new mongoose.Schema({
     username: {
         type: String,
@@ -12,8 +13,8 @@ const AuthSchema = new mongoose.Schema({
         unique: true
     },
     password: {
-        type: String,  // Şifre alanı
-        required: true // Zorunlu alan
+        type: String,
+        required: true
     },
     date: {
         type: Date,
@@ -21,4 +22,4 @@ const AuthSchema = new mongoose.Schema({
     }
 });
 
-module.exports = mongoose.model('auth', AuthSchema);
+module.exports = mongoose.model('auth', AuthSchema); // 'auth' koleksiyonunu oluşturur

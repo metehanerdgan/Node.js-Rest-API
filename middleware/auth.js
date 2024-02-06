@@ -1,23 +1,21 @@
-const jwt = require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
-const auth = async(req,res,next) =>{
-try {
-    const token = req.headers.authorization.split("")[1]
-    let decodedData;
+const auth = async (req, res, next) => {
+    try {
+        const token = req.headers.authorization.split(" ")[1]; // İstekten JWT token'ı alır
+        let decodedData;
 
-    if(token){
-        decodedData = jwt.verify(token, process.env.SECRET_TOKEN)
-
-        req.userId = decodedData?.id
+        if (token) { // Token varsa
+            decodedData = jwt.verify(token, process.env.SECRET_TOKEN); // Token'ı doğrular
+            req.userId = decodedData?.id; // Kullanıcı kimliğini ayarlar
+        } else { // Token yoksa
+            decodedData = jwt.decode(token); // Token'ı çözer
+            req.userId = decodedData.sub; // Kullanıcı kimliğini ayarlar
+        }
+        next(); // Sonraki middleware'e veya rotaya geçer
+    } catch (error) { // Hata durumunda hata döndürür
+        console.log(error);
     }
-    else{
-        decodedData = jwt.decde(token)
+};
 
-        req.userId = decodedData.sub
-    }
-    next()
-} catch (error) {
-  console.log(error)
-}
-}
-module.exports = auth
+module.exports = auth;
